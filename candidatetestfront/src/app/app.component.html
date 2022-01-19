@@ -1,0 +1,30 @@
+<h1 class="mb-5 display-4">condidate test</h1>
+
+<p>
+  <input #label placeholder="add label" >
+  <button (click)="addLabel(label)">Add label</button>
+</p>
+
+<div class="row" *ngFor="let label of labels" style="margin-right:24px;float:left">
+
+  <button type="button" class="btn"
+    (click)="selectLabel(label)" [ngClass]="this.selectedLabel == label ? 'selected' : ''"
+    (click)="addAnnotation(this.selectedLabel, ColorLabel.get(this.selectedLabel))"
+    [ngStyle]="{'background-color':ColorLabel.get(label)}">
+    {{label}}
+  </button>
+   
+</div>
+<br>
+<br>
+<br>
+<textarea type="text" id="text" style="margin-left: 2%; width: 360px;height: 150px;"></textarea> 
+<button (click)="addtext()">Enter Text</button>
+<br>
+<br>
+<div>
+  <ngx-annotate-text style="position: center;" [(annotations)]="annotations" [removable]="true" [text]="text" #annotateText> </ngx-annotate-text>
+</div>
+<br>
+<br>
+<button (click)="createjson(text,annotations)">export</button>
